@@ -13,6 +13,13 @@ namespace Calculadora.Tests.PageObjects
             _driver = driver;
         }
 
+        public AppiumElement ObterBotaoPeloNome(string nomeDoBotao)
+        {
+            // Encontra o botao pelo nome exibido nele
+            return _driver.FindElement(By.XPath($"//Button[@Name='{nomeDoBotao}']"));
+        }
+
+
         // Mapeamento dos elementos da tela usando a sintaxe completa
         public AppiumElement BotaoSete => _driver.FindElement(By.XPath("//Button[@AutomationId='num7Button']"));
         public AppiumElement BotaoOito => _driver.FindElement(By.XPath("//Button[@AutomationId='num8Button']"));
