@@ -1,4 +1,5 @@
 ﻿using Calculadora.Tests.PageObjects;
+using Calculadora.Tests.Steps;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 
@@ -50,17 +51,15 @@ namespace Calculadora.Tests.Tests
         [TestMethod]
         public void DeveSomarSeteMaisOitoEResultarEmQuinze()
         {
-            // 1. Arrange: Cria uma instância da nossa tela da Calculadora
+            // Arrange
             var telaCalculadora = new CalculadoraTela(_driver);
+            var stepsCalculadora = new CalculadoraSteps(telaCalculadora);
 
-            // 2. Act: Executa as ações usando os elementos mapeados na tela
-            telaCalculadora.BotaoSete.Click();
-            telaCalculadora.BotaoSomar.Click();
-            telaCalculadora.BotaoOito.Click();
-            telaCalculadora.BotaoIgual.Click();
+            // Act
+            stepsCalculadora.SomarDoisNumeros("Sete", "Oito");
 
-            // 3. Assert: Pega o resultado do visor e verifica se está correto
-            Assert.AreEqual("15", telaCalculadora.ObterResultadoDoVisor());
+            // Assert
+            Assert.AreEqual("15", telaCalculadora.ObterResultadoDoVisor(), "O resultado da soma de 7 + 8 deveria ser 15.");
         }
     }
 }
